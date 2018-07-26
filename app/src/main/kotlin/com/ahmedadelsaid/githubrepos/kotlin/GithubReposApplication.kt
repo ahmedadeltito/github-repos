@@ -8,7 +8,7 @@ import io.fabric.sdk.android.Fabric
  * Created by Ahmed Adel on 26/07/2018.
  */
 
-class GithubReposApplication: Application(){
+class GithubReposApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
