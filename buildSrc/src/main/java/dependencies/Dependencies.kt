@@ -27,10 +27,6 @@ object Dependencies {
         "org.jetbrains.spek:spek-api:${Versions.Testing.spek}"
     )
 
-    val testRuntime = arrayOf(
-        "org.jetbrains.spek:spek-junit-platform-engine:${Versions.Testing.spek}"
-    )
-
     val kotlin = arrayOf(
         "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.Kotlin.std}"
     )

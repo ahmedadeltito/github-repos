@@ -7,6 +7,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
         maven { url "http://dl.bintray.com/jetbrains/spek" }
     }
 
@@ -14,6 +15,9 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.1.3'
 
         classpath "com.google.gms:google-services:${Versions.SupportAndroidLibs.servicesPlugin}"
+
+        // Crashlytics
+        classpath "io.fabric.tools:gradle:${Versions.Libraries.fabric}"
 
         // Kotlin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.std}"
@@ -29,6 +33,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
         maven { url "http://dl.bintray.com/jetbrains/spek" }
     }
 }
