@@ -64,8 +64,9 @@ object Versions {
         // Glide for Image Handling
         const val glide = "4.7.1"
 
-        // Realm Database
-        const val realm = "4.3.3"
+        // fabric
+        const val fabric = "1.25.4"
+        const val crahslytics = "2.9.4@aar"
 
     }
 }
