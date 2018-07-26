@@ -1,7 +1,8 @@
-package com.ahmedadelsaid.githubrepos
+package com.ahmedadelsaid.githubrepos.kotlin
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.ahmedadelsaid.githubrepos.R
 
 class MainActivity : AppCompatActivity() {
 

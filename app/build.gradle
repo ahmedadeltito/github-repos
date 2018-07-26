@@ -1,33 +1,84 @@
+import dependencies.Dependencies
+import dependencies.Versions
+
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion Versions.SupportAndroidLibs.compileSdk
+    buildToolsVersion Versions.SupportAndroidLibs.buildTools
+
     defaultConfig {
         applicationId "com.ahmedadelsaid.githubrepos"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+
+        minSdkVersion Versions.SupportAndroidLibs.minSdk
+        targetSdkVersion Versions.SupportAndroidLibs.targetSdk
+
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        production {
+            dimension "version"
+            applicationIdSuffix ".production"
+            versionNameSuffix "-production"
+        }
+        development {
+            dimension "version"
+            applicationIdSuffix ".development"
+            versionNameSuffix "-development"
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:support-annotations:${Versions.SupportAndroidLibs.supportLibrary}"
+            force "com.android.support:design:${Versions.SupportAndroidLibs.supportLibrary}"
+            force "com.android.support:appcompat-v7:${Versions.SupportAndroidLibs.supportLibrary}"
+            force "com.google.android.gms:play-services-analytics:${Versions.Google.playServices}"
+            force "com.google.android.gms:play-services-maps:${Versions.Google.playServices}"
+            force "com.google.android.gms:play-services-gcm:${Versions.Google.playServices}"
+            force "com.google.android.gms:play-services-location:${Versions.Google.playServices}"
+            force "junit:junit:${Versions.Testing.junit}"
+            force "com.squareup.okhttp3:okhttp:${Versions.Libraries.okHttp}"
+            force "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.std}"
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation Dependencies.supportAndroidLibs
+    implementation Dependencies.androidArchComponents
+    implementation Dependencies.google
+    implementation Dependencies.libraries
+    kapt Dependencies.annotations
+    testImplementation Dependencies.testing
+    testRuntimeOnly Dependencies.testRuntime
 }
