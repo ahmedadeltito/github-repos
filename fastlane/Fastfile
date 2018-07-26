@@ -41,7 +41,7 @@ platform :android do
 
   desc "Run unit tests"
   lane :unit_tests do |options|
-    gradle(task: "test", build_type: @build_type)
+    gradle(task: "testDevelopment", build_type: @build_type)
   end
 
   desc "Run instrumentation tests"

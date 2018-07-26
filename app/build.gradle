@@ -20,7 +20,7 @@ android {
         versionCode Versions.versionCode
         versionName Versions.versionName
 
-        manifestPlaceholders = [ fabric_api_key:"${FABRIC_API_KEY}" ]
+        manifestPlaceholders = [fabric_api_key: "${FABRIC_API_KEY}"]
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -29,10 +29,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            applicationIdSuffix ".debug"
-            debuggable true
         }
     }
 
@@ -67,6 +63,12 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        androidTest {
+            java.srcDirs += 'src/androidTest/kotlin'
+        }
+        test {
+            java.srcDirs += 'src/test/kotlin'
+        }
     }
 
     compileOptions {
