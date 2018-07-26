@@ -94,6 +94,21 @@ jobs:
           name: Deploy to Crashlytics Beta
           command: bundle exec fastlane deploy_to_crashlytics
 
+  ## Create a Slack Message
+  slack_message:
+      <<: *android_config
+      steps:
+        - checkout
+        - *restore_gradle_cache
+        - *restore_gems_cache
+        - *ruby_dependencies
+        - *android_dependencies
+        - *save_gradle_cache
+        - *save_gems_cache
+        - run:
+            name: Create a Slack Message
+            command: bundle exec fastlane slack_message
+
   ## Deploy to Play Store
   deploy_play_store:
     <<: *android_config
@@ -119,17 +134,18 @@ workflows:
               only:
                 - master
                 - develop
+                - release
       - deploy_crashlytics:
+          filters:
+            branches:
+              only:
+                - release
+          requires:
+            - test_unit
+      - slack_message:
           filters:
             branches:
               only:
                 - develop
           requires:
             - test_unit
-#      - deploy_play_store:
-#          filters:
-#            branches:
-#              only:
-#                - production
-#          requires:
-#            - test_unit
