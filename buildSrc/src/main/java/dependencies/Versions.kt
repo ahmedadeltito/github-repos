@@ -49,6 +49,13 @@ object Versions {
         const val retrofit = "2.3.0"
         const val okHttp = "3.9.1"
 
+        // Room for Database
+        const val room = "1.1.1"
+
+        // Paging Library of Android Arch Component to make it easier for you to load data
+        // gradually and gracefully within your app's
+        const val paging = "1.0.0"
+
         // Gson
         const val gson = "2.8.2"
 

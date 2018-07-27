@@ -77,6 +77,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation Dependencies.supportAndroidLibs
@@ -86,6 +90,7 @@ dependencies {
     implementation("com.crashlytics.sdk.android:crashlytics:${Versions.Libraries.crahslytics}") {
         transitive = true
     }
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     kapt Dependencies.annotations
     testImplementation Dependencies.testing
     testRuntimeOnly("org.jetbrains.spek:spek-junit-platform-engine:${Versions.Testing.spek}")

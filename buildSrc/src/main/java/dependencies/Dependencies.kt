@@ -23,6 +23,8 @@ object Dependencies {
         "com.android.support.test.espresso:espresso-core:${Versions.Testing.espresso}",
         "org.mockito:mockito-core:${Versions.Testing.mockito}",
         "junit:junit:${Versions.Testing.junit}",
+        "android.arch.persistence.room:testing:${Versions.Libraries.room}",
+        "android.arch.paging:common:${Versions.Libraries.paging}",
         "com.squareup.rx.idler:rx2-idler:${Versions.Libraries.rxIdler}",
         "org.jetbrains.spek:spek-api:${Versions.Testing.spek}"
     )
@@ -54,6 +56,13 @@ object Dependencies {
         "com.squareup.retrofit2:adapter-rxjava2:${Versions.Libraries.retrofit}",
         "com.squareup.retrofit2:retrofit-mock:${Versions.Libraries.retrofit}",
 
+        // Room
+        "android.arch.persistence.room:runtime:${Versions.Libraries.room}",
+        "android.arch.persistence.room:rxjava2:${Versions.Libraries.room}",
+
+        // Paging
+        "android.arch.paging:runtime:${Versions.Libraries.paging}",
+
         // Gson
         "com.squareup.retrofit2:converter-gson:${Versions.Libraries.retrofit}",
 
@@ -71,6 +80,9 @@ object Dependencies {
 
         // Android Architecture Components
         "android.arch.lifecycle:compiler:${Versions.SupportAndroidLibs.androidArcComponents}",
+
+        // Room
+        "android.arch.persistence.room:compiler:${Versions.Libraries.room}",
 
         // ButterKnife
         "com.jakewharton:butterknife-compiler:${Versions.Libraries.butterknife}",

@@ -19,9 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabric_api_key}" />
+
+        <activity
+            android:name=".kotlin.reboslist.GithubReposListActivity"
+            android:label="@string/title_activity_github_repos_list"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
