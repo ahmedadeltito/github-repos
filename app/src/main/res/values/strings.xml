@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GithubRepos</string>
+    <string name="title_activity_github_repos_list">Github Repositories</string>
+    <string name="action_settings">Settings</string>
 </resources>
