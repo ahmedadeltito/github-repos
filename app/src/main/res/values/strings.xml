@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">GithubRepos</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="loading">Loading</string>
+    <string name="user_name">User Name: %s</string>
+    <string name="followers_url">Followers URL: %s</string>
+    <string name="repos_url">Repos URL: %s</string>
+    <string name="search_hint">Users Repository</string>
+    <string name="no_results">No results 😓</string>
+    <string name="unknown">\?</string>
+    <string name="retry">Retry</string>
+
+    <string name="title_activity_github_repos_list">Users Github Repository</string>
+    <string name="title_activity_repo_details">Repo Details</string>
 </resources>
