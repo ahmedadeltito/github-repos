@@ -5,6 +5,7 @@ object Dependencies {
     val supportAndroidLibs = arrayOf(
         "com.android.support:support-annotations:${Versions.SupportAndroidLibs.supportLibrary}",
         "com.android.support:appcompat-v7:${Versions.SupportAndroidLibs.supportLibrary}",
+        "com.android.support:cardview-v7:${Versions.SupportAndroidLibs.supportLibrary}",
         "com.android.support:recyclerview-v7:${Versions.SupportAndroidLibs.supportLibrary}",
         "com.android.support:design:${Versions.SupportAndroidLibs.supportLibrary}",
         "com.android.support:customtabs:${Versions.SupportAndroidLibs.supportLibrary}",

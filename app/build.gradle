@@ -22,6 +22,9 @@ android {
 
         manifestPlaceholders = [fabric_api_key: "${FABRIC_API_KEY}"]
 
+        buildConfigField "String", 'CLIENT_ID', CLIENT_ID
+        buildConfigField "String", 'CLIENT_SECRET', CLIENT_SECRET
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,11 +41,13 @@ android {
             dimension "version"
             applicationIdSuffix ".production"
             versionNameSuffix "-production"
+            buildConfigField "String", 'BASE_URL', BASE_PRODUCTION_URL
         }
         development {
             dimension "version"
             applicationIdSuffix ".development"
             versionNameSuffix "-development"
+            buildConfigField "String", 'BASE_URL', BASE_DEVELOPMENT_URL
         }
     }
 

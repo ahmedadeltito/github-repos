@@ -27,13 +27,16 @@ abstract class RepoDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): RepoDatabase =
             INSTANCE ?: synchronized(this) {
-                INSTANCE
-                        ?: buildDatabase(context).also { INSTANCE = it }
+                INSTANCE ?: buildDatabase(context).also {
+                    INSTANCE = it
+                }
             }
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext,
-                RepoDatabase::class.java, "Github.db")
-                .build()
+            Room.databaseBuilder(
+                context.applicationContext,
+                RepoDatabase::class.java,
+                "Github.db"
+            ).build()
     }
 }
