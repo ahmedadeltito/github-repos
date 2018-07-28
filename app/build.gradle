@@ -1,33 +1,102 @@
+import dependencies.Dependencies
+import dependencies.Versions
+
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion Versions.SupportAndroidLibs.compileSdk
+    buildToolsVersion Versions.SupportAndroidLibs.buildTools
+
     defaultConfig {
         applicationId "com.ahmedadelsaid.githubrepos"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+
+        minSdkVersion Versions.SupportAndroidLibs.minSdk
+        targetSdkVersion Versions.SupportAndroidLibs.targetSdk
+
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
+        manifestPlaceholders = [fabric_api_key: "${FABRIC_API_KEY}"]
+
+        buildConfigField "String", 'CLIENT_ID', CLIENT_ID
+        buildConfigField "String", 'CLIENT_SECRET', CLIENT_SECRET
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        production {
+            dimension "version"
+            applicationIdSuffix ".production"
+            versionNameSuffix "-production"
+            buildConfigField "String", 'BASE_URL', BASE_PRODUCTION_URL
+        }
+        development {
+            dimension "version"
+            applicationIdSuffix ".development"
+            versionNameSuffix "-development"
+            buildConfigField "String", 'BASE_URL', BASE_DEVELOPMENT_URL
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:support-annotations:${Versions.SupportAndroidLibs.supportLibrary}"
+            force "com.android.support:design:${Versions.SupportAndroidLibs.supportLibrary}"
+            force "com.android.support:appcompat-v7:${Versions.SupportAndroidLibs.supportLibrary}"
+            force "com.google.android.gms:play-services-analytics:${Versions.Google.playServices}"
+            force "com.google.android.gms:play-services-maps:${Versions.Google.playServices}"
+            force "com.google.android.gms:play-services-gcm:${Versions.Google.playServices}"
+            force "com.google.android.gms:play-services-location:${Versions.Google.playServices}"
+            force "junit:junit:${Versions.Testing.junit}"
+            force "com.squareup.okhttp3:okhttp:${Versions.Libraries.okHttp}"
+            force "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.std}"
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest {
+            java.srcDirs += 'src/androidTest/kotlin'
+        }
+        test {
+            java.srcDirs += 'src/test/kotlin'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation Dependencies.supportAndroidLibs
+    implementation Dependencies.androidArchComponents
+    implementation Dependencies.google
+    implementation Dependencies.libraries
+    implementation("com.crashlytics.sdk.android:crashlytics:${Versions.Libraries.crahslytics}") {
+        transitive = true
+    }
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    kapt Dependencies.annotations
+    testImplementation Dependencies.testing
+    testRuntimeOnly("org.jetbrains.spek:spek-junit-platform-engine:${Versions.Testing.spek}")
 }
