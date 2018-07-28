@@ -1,5 +1,7 @@
 
 
+
+
 # Android Github Repositories Simple Project
 > Simple Android Github Project for showing users with user details screen.
 
@@ -54,7 +56,7 @@ The  Guide to App Architecture proposes an architecture with the following main 
 -   A **ViewModel** that provides data specific for the UI
 -   The **UI**, which shows a visual representation of the data in the ViewModel
 
-So, our app follows the architecture recommended in the "[Guide to App Architecture](https://developer.android.com/topic/libraries/architecture/guide.html)", using Room as local data storage. Here's what you will find in each package:
+So, our app follows the architecture recommended in the [Guide to App Architecture](https://developer.android.com/topic/libraries/architecture/guide.html), using **Room** as local data storage. Here's what you will find in each package:
 
 -   **api**  - contains Github API calls, using Retrofit
 -   **db**  - database cache for network data
@@ -75,7 +77,7 @@ The Paging library works with all of these components and coordinates the intera
 
 The following diagram shows all the modules in our recommended architecture and how they interact with one another:
 
-The main players in the MVVM pattern are:
+The main players in the **MVVM** pattern are:
 -   The **View** that informs the ViewModel about the user’s actions. It is the actual user interface in the app. It can be an `Activity`, a `Fragment` or any custom Android `View`. 
 -   The  **ViewModel** exposes streams of data relevant to the View. It is a model for the View of the app: an abstraction of the View. The ViewModel retrieves the necessary data from the DataModel, applies the UI logic and then exposes relevant data for the View to consume.
 -   The  **DataModel**  abstracts the data source. The ViewModel works with the DataModel to get and save the data. It exposes data easily consumable through event streams  like  **RxJava’s Observables** or **LiveData** as we used here in our app. It composes data from multiple sources, like the network layer, database or shared preferences and exposes easily consumable data to whomever needs it. The DataModels hold the entire business logic.
@@ -108,3 +110,7 @@ So, in our project we used [CircleCi](https://circleci.com/docs/1.0/android/) fo
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request.
+
+## License
+
+Copyright (c) 2018 Ahmed Adel, GithubRepos is released under the [this license](https://github.com/ahmed-adel-said/github-repos/blob/master/LICENSE).
