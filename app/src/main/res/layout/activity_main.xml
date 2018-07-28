@@ -6,30 +6,30 @@
     android:layout_margin="16dp"
     tools:context=".kotlin.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical"
         tools:ignore="UselessParent">
 
         <ImageView
             android:id="@+id/github_logo_iv"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_alignParentTop="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/github_logo"
-            android:visibility="invisible" />
+            android:src="@drawable/github_logo" />
 
         <ImageView
             android:id="@+id/github_word_iv"
             android:layout_width="200dp"
             android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/github_word"
             android:visibility="invisible" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

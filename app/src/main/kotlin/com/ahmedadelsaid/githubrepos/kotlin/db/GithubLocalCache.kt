@@ -1,5 +1,6 @@
 package com.ahmedadelsaid.githubrepos.kotlin.db
 
+import android.arch.lifecycle.LiveData
 import android.arch.paging.DataSource
 import android.util.Log
 import com.ahmedadelsaid.githubrepos.kotlin.model.User
@@ -28,14 +29,18 @@ class GithubLocalCache(
     }
 
     /**
-     * Request a LiveData<List<Repo>> from the Dao, based on a repo name. If the name contains
+     * Request a LiveData<List<User>> from the Dao, based on a user name. If the name contains
      * multiple words separated by spaces, then we're emulating the GitHub API behavior and allow
      * any characters between the words.
      * @param name user name
      */
-    fun userByName(name: String): DataSource.Factory<Int, User> {
+    fun usersByName(name: String): DataSource.Factory<Int, User> {
         // appending '%' so we can allow other characters to be before and after the query string
         val query = "%${name.replace(' ', '%')}%"
         return userDao.usersByName(query)
+    }
+
+    fun findUser(userId: Long): LiveData<User> {
+        return userDao.userById(userId)
     }
 }

@@ -1,5 +1,6 @@
 package com.ahmedadelsaid.githubrepos.kotlin.db
 
+import android.arch.lifecycle.LiveData
 import android.arch.paging.DataSource
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
@@ -19,9 +20,13 @@ interface UserDao {
     fun insert(posts: List<User>)
 
     // Do a similar query as the search API:
-    // Look for users that contain the query string in the name or in the description
-    // and order those results descending, by the number of stars and then by name
+    // Look for users that contain the query string in the User Name.
     @Query("SELECT * FROM user WHERE (login LIKE :queryString)")
     fun usersByName(queryString: String): DataSource.Factory<Int, User>
+
+    // Do a similar query as the search API:
+    // Look for users that contain the query string in the User Id.
+    @Query("SELECT * FROM user WHERE (id LIKE :userId)")
+    fun userById(userId: Long): LiveData<User>
 
 }
